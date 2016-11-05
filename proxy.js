@@ -39,14 +39,9 @@ function packetReceive(msg, info) {
             });
         }
 
+        console.log("tunneling client packet to server.");
         connections[info.port].socket.send(msg, 0, msg.length, serverPort, serverIp);
     }
-
-    //if(info.address != serverIp) {
-    //    console.log('tunneling client packet to server');
-    //    connections[info.port].socket.send(msg, 0, msg.length, serverPort, serverIp);
-    //}
-
 }
 
 proxyStart();
