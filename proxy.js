@@ -34,13 +34,13 @@ function packetReceive(msg, info) {
 
             connections[info.port].socket.bind(info.port);
             connections[info.port].socket.on("message", function (msg2, info2) {
-                console.log("tunneling server packet to client.");
-                client.send(msg2, 0, msg2.length, info.port, info.address);
+                console.log("tunneling server packet to player.");
+                client.send(msg2, 0, msg2.length, info.port, info.address); //send back to player
             });
         }
 
-        console.log("tunneling client packet to server.");
-        connections[info.port].socket.send(msg, 0, msg.length, serverPort, serverIp);
+        console.log("tunneling player packet to server.");
+        connections[info.port].socket.send(msg, 0, msg.length, serverPort, serverIp); //send to server
     }
 }
 
