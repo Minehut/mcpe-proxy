@@ -16,7 +16,7 @@ function proxyStart() {
 
 function packetReceive(msg, info) {
     console.log("tunneling packet!");
-    client.send(msg, 0, msg.length, 30001, "localhost");
+    client.send(msg, 0, msg.length, 30001, "192.99.101.38");
 }
 
 proxyStart();
