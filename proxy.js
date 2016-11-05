@@ -41,6 +41,7 @@ function packetReceive(msg, info) {
     }
 
     if(info.address !== serverIp) {
+        console.log('sending packet to client');
         connections[info.port].socket.send(msg, 0, msg.length, 30001, serverIp);
     }
 
