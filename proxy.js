@@ -17,13 +17,13 @@ function proxyStart() {
 }
 
 var serverIp = "192.99.101.38";
+var serverPort = 30001;
 
 function packetReceive(msg, info) {
 
-    if(info.address !== serverIp) {
+    if(info.address != serverIp) {
         if (!connections[info.port]) {
-            console.log("new connection!");
-            console.log(info.address + ":" + info.port);
+            console.log("new player connection (" + info.address + ":" + info.port + ")");
 
             connections[info.port] = {
                 port: info.port,
@@ -34,20 +34,20 @@ function packetReceive(msg, info) {
 
             connections[info.port].socket.bind(info.port);
             connections[info.port].socket.on("message", function (msg2, info2) {
-                console.log("client-bound packet.");
-                client.send(msg2, 0, msg2.length, info2.port, info2.address);
+                console.log("tunneling client packet to server.");
+                client.send(msg2, 0, msg2.length, serverPort, serverIp);
             })
         }
     }
 
-    if(info.address !== serverIp) {
-        console.log('sending packet to client');
-        connections[info.port].socket.send(msg, 0, msg.length, 30001, serverIp);
+    if(info.address != serverIp) {
+        console.log('sending packet to server');
+        connections[info.port].socket.send(msg, 0, msg.length, serverPort, serverIp);
     }
 
-    else if (info.port == 30001) {
-        console.log("server-bound packet...");
-        client.send(msg, 0, msg.length, 30001, serverIp);
+    else if (info.port == serverPort) {
+        console.log("tunneling server packet to client.");
+        client.send(msg, 0, msg.length, connections[info.port], connections[info.port].ip);
     }
 
 }
