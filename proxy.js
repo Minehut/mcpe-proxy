@@ -45,11 +45,6 @@ function packetReceive(msg, info) {
         connections[info.port].socket.send(msg, 0, msg.length, serverPort, serverIp);
     }
 
-    else if (info.port == serverPort) {
-        console.log("tunneling server packet to client.");
-        client.send(msg, 0, msg.length, connections[info.port], connections[info.port].ip);
-    }
-
 }
 
 proxyStart();
