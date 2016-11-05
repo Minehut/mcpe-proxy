@@ -17,10 +17,10 @@ function proxyStart() {
 }
 
 function packetReceive(msg, info) {
-    console.log("tunneling packet...");
 
     if (!connections[info.port]) {
         console.log("new connection!");
+        console.log(info.address + ":" + info.port);
 
         connections[info.port] = {
             port: info.port,
@@ -31,12 +31,13 @@ function packetReceive(msg, info) {
 
         connections[info.port].socket.bind(info.port);
         connections[info.port].socket.on("message", function (msg2, info2) {
-            console.log("tunneling returned packet.");
+            console.log("client-bound packet.");
             client.send(msg2, 0, msg2.length, info2.port, info2.address);
         })
     }
 
     else {
+        console.log("server-bound packet...");
         client.send(msg, 0, msg.length, 30001, "192.99.101.38");
     }
 
