@@ -35,13 +35,15 @@ function packetReceive(msg, info) {
             connections[info.port].socket.bind(info.port);
             connections[info.port].socket.on("message", function (msg2, info2) {
                 console.log("tunneling client packet to server.");
-                client.send(msg2, 0, msg2.length, serverPort, serverIp);
-            })
+                client.send(msg2, 0, msg2.length, info.port, info.address);
+            });
         }
+
+        client.send(msg, 0, msg.length, serverPort, serverIp);
     }
 
     if(info.address != serverIp) {
-        console.log('sending packet to server');
+        console.log('tunneling client packet to server');
         connections[info.port].socket.send(msg, 0, msg.length, serverPort, serverIp);
     }
 
