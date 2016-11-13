@@ -57,10 +57,9 @@ function decodePacket(msg) {
              return data;
     }
 
-    var type = new Buffer(msg).readUInt8(0);
-    var hex = msg;
-    data['Data length'] =  msg.length;
-    // data['Packet ID'] = "0x" + msg.substr(0,1).toString('hex');
+    // var type = new Buffer(msg).readUInt8(0);
+
+    var type = "0x" + msg.toString('hex');
 
     console.log('packet type: ' + type);
 }
