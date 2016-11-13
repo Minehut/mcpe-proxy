@@ -52,13 +52,11 @@ function getPacketId(msg) {
         return "null";
     }
 
-    msg = new Buffer(msg, 'hex');
-
     console.log(inspect(msg));
 
 
-    // var hex = msg.toString('hex');
-    var type = new Buffer(msg.substr(0, 1)).readUInt8(0);
+    var hex = msg.toString('hex');
+    var type = hex.substr(0, 1).readUInt8(0);
     console.log('type: ' + type);
 
     switch(type) {
