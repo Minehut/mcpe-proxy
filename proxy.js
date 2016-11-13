@@ -54,7 +54,7 @@ function decodePacket(msg) {
 
     var hex = msg.toString('hex');
     console.log('hex: ' + hex);
-    var type = parseInt(hex.substr(0, 2));
+    var type = parseInt(hex.substr(0, 2), 16);
 
     var data = {};
     data['Packet ID'] = "0x" + type;
