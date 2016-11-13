@@ -57,10 +57,8 @@ function getPacketId(msg) {
 
     var hex = msg.toString('hex');
     console.log('hex: ' + hex);
-    var type = new Buffer(hex.substr(0, 1)).readUInt8(0);
+    var type = parseInt(hex.substr(0, 1));
     console.log('type: ' + type);
-
-    console.log('test: ' + 0x01);
 
     switch(type) {
         case 0x01:
