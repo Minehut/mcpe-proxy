@@ -55,9 +55,8 @@ function getPacketId(msg) {
     console.log(inspect(msg));
 
 
-
-    var type = msg.toString().substr(0, 1);
-    console.log(type); 
+    var type = msg.toString('hex').substr(0, 1);
+    console.log('type: ' + type); 
 
 
 
