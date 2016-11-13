@@ -54,10 +54,10 @@ function decodePacket(msg) {
 
     var hex = msg.toString('hex');
     console.log('hex: ' + hex);
-    var type = toHex(hex.substr(0, 2));
+    var type = parseInt(hex.substr(0, 2), 16);
 
     var data = {};
-    data['Packet ID'] = "0x" + type;
+    data['Packet ID'] = "0x" + hex.substr(0, 2);
 
     switch(type) {
         case 0x01:
@@ -74,14 +74,6 @@ function decodePacket(msg) {
 
 
     return ("0x" + msg.toString('hex').substring(0, 2));
-}
-
-function toHex(str) {
-    var hex = '';
-    for(var i=0;i<str.length;i++) {
-        hex += ''+str.charCodeAt(i).toString(16);
-    }
-    return hex;
 }
 
 proxyStart();
