@@ -51,7 +51,7 @@ function getPacketId(msg) {
         return "null";
     }
 
-    return ("0x" + msg.toString('hex')).substring(0, 3);
+    return ("0x" + msg.toString('hex')).substring(0, 4);
 }
 
 proxyStart();
