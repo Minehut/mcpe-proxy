@@ -57,7 +57,7 @@ function decodePacket(msg) {
     var type = parseInt(hex.substr(0, 1));
 
     var data = {};
-    data.['Packet ID'] = "0x" + type;
+    data['Packet ID'] = "0x" + type;
 
     switch(type) {
         case 0x01:
