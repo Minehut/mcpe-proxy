@@ -42,7 +42,7 @@ function packetReceive(msg, info) {
         }
 
         console.log("tunneling player packet to server.");
-        decodePacket(msg);
+        decodePacket(new Buffer(msg, 'hex'));
         console.log('-------------');
         connections[info.port].socket.send(msg, 0, msg.length, serverPort, serverIp); //send to server
     } else {
