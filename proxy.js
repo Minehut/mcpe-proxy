@@ -67,6 +67,10 @@ function decodePacket(msg) {
             data['Ping ID'] = hex.substr(1, 8).toString('hex');
             data['Server ID'] = hex.substr(9, 8).toString('hex');
             break;
+
+        case 0x07:
+            console.log(inspect(msg));
+            break;
     }
 
     console.log(inspect(data));
