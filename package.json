@@ -7,5 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Luke Chatton",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "object-inspect": "^1.2.1"
+  }
 }
