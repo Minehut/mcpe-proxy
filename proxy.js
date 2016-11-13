@@ -34,34 +34,24 @@ function packetReceive(msg, info) {
 
             connections[info.port].socket.bind(info.port);
             connections[info.port].socket.on("message", function (msg2, info2) {
-                console.log("tunneling server packet to player.");
-                console.log(msg2);
-                console.log('-------------');
+                console.log("tunneling server packet to player (" + getPacketId(msg) + ")");
                 client.send(msg2, 0, msg2.length, info.port, info.address); //send back to player
             });
         }
 
-        console.log("tunneling player packet to server.");
-        decodePacket(new Buffer(msg, 'hex'));
-        console.log('-------------');
+        console.log("tunneling player packet to server (" + getPacketId(msg) + ")");
         connections[info.port].socket.send(msg, 0, msg.length, serverPort, serverIp); //send to server
     } else {
         console.log("Port patched the server ip!!");
     }
 }
 
-function decodePacket(msg) {
-    var data = {};
+function getPacketId(msg) {
     if(typeof(msg) === 'undefined'){
-        data['Error'] = "No data found for this packet. Maybe the database was cleared?";
-             return data;
+        return "null";
     }
 
-    // var type = new Buffer(msg).readUInt8(0);
-
-    var type = "0x" + msg.toString('hex');
-
-    console.log('packet type: ' + type);
+    return "0x" + msg.toString('hex');
 }
 
 proxyStart();
