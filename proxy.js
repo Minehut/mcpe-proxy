@@ -1,5 +1,6 @@
 var dgram = require('dgram');
 var EventEmitter = require('events').EventEmitter;
+var inspect = require('object-inspect');
 
 var config = require('./config.json');
 
@@ -52,6 +53,7 @@ function getPacketId(msg) {
     }
 
     console.log(typeof(msg));
+    console.log(inspect(msg))
 
     return ("0x" + msg.toString('hex')).substring(0, 4);
 }
