@@ -67,10 +67,6 @@ function decodePacket(msg) {
         case 0x1c:
             data['Ping ID'] = hex.substr(1, 8).toString('hex');
             data['Server ID'] = hex.substr(9, 8).toString('hex');
-            data['Magic'] = hex.substr(17, 16).toString('hex');
-            data['Length'] = hex.substr(33, 2).readUInt16BE(0);
-            data['Identifier'] = hex.substr(35, 11).toString('ascii');
-            data['Server Name'] = hex.substr(46).toString('ascii');
             break;
     }
 
