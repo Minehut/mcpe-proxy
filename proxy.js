@@ -72,8 +72,8 @@ function decodePacket(msg) {
             console.log(inspect(msg));
             data['Magic'] = hex.substr(1, 16).toString('hex')
             data['Security + Cookie'] = hex.substr(17, 5).toString('hex')
-            data['Server Port'] = hex.substr(22, 2).readUInt16BE(0);
-            data['MTU Size'] = hex.substr(24, 2).readUInt16BE(0);
+            data['Server Port'] = parseInt(hex.substr(22, 2), 16);
+            data['MTU Size'] = parseInt(hex.substr(24, 2), 16);
             data['Client ID'] = hex.substr(26, 8).toString('hex')
             break;
     }
