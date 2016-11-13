@@ -35,12 +35,18 @@ function packetReceive(msg, info) {
             connections[info.port].socket.bind(info.port);
             connections[info.port].socket.on("message", function (msg2, info2) {
                 console.log("tunneling server packet to player.");
+                console.log(msg2);
+                console.log('-------------');
                 client.send(msg2, 0, msg2.length, info.port, info.address); //send back to player
             });
         }
 
         console.log("tunneling player packet to server.");
+        console.log(msg);
+        console.log('-------------');
         connections[info.port].socket.send(msg, 0, msg.length, serverPort, serverIp); //send to server
+    } else {
+        console.log("Port patched the server ip!!");
     }
 }
 
