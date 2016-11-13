@@ -51,6 +51,8 @@ function getPacketId(msg) {
         return "null";
     }
 
+    console.log(typeof(msg));
+
     return ("0x" + msg.toString('hex')).substring(0, 4);
 }
 
