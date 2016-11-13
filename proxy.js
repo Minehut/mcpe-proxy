@@ -54,7 +54,7 @@ function decodePacket(msg) {
 
     var hex = msg.toString('hex');
     console.log('hex: ' + hex);
-    var type = parseInt(hex.substr(0, 4));
+    var type = parseInt(hex.substr(0, 2));
 
     var data = {};
     data['Packet ID'] = "0x" + type;
@@ -77,7 +77,7 @@ function decodePacket(msg) {
     console.log(inspect(data));
 
 
-    return ("0x" + msg.toString('hex')).substring(0, 4);
+    return ("0x" + msg.toString('hex').substring(0, 2));
 }
 
 proxyStart();
